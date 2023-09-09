@@ -23,41 +23,54 @@ export type HeadersObject = PartHeaders & Record<string, string>;
 
 type ValidSingleValue = string | number | boolean;
 type ValidValue = ValidSingleValue | Record<string, ValidSingleValue>;
-export type Data = Record<string, ValidValue> | undefined;
-export interface RequestOptions {
+export type RequestData = Record<string, ValidValue> | undefined;
+
+export interface RequestOptions<Req> {
   path: string;
   method: Method;
+  data: Req;
   headers?: HeadersObject;
-  data: Data;
+  debug?: false;
 }
+
+export type ProcessedRequestOptions<Req> = Omit<RequestOptions<Req>, "path"> & {
+  url: string;
+};
+
+export type PartReqOptions = Pick<RequestOptions<unknown>, "path" | "method">;
 
 /** fetch 生命周期钩子函数 */
 export type Hooks = {
-  willFetch: <R>(requestOptions: RequestOptions) => {
-    requestOptions: RequestOptions;
-    shouldFetch?: boolean;
-    response?: R;
+  initFetch: (partReqOptions: PartReqOptions) => {
+    debug?: boolean;
   };
-  didFetch: <R>(
-    response: R,
+  willFetch: (requestOptions: ProcessedRequestOptions<unknown>) => {
+    requestOptions: ProcessedRequestOptions<unknown>;
+    shouldFetch?: boolean;
+    response?: unknown;
+  };
+  didFetch: (
+    response: unknown,
     error: unknown
-  ) => { response: R; error?: unknown };
+  ) => { response: unknown; error?: unknown };
 };
 
 /** fetch 生命周期 */
 export type HookType = keyof Hooks;
+export type DataObject = Record<string, any>;
 
-export type Client = <D extends Data, R>(options: {
-  path: string;
-  method: Method;
-  headers?: HeadersObject;
-  data: D;
-}) => Promise<R>;
+export type Client = <Req extends RequestData, Res>(
+  options: ProcessedRequestOptions<Req>
+) => Promise<Res>;
 
 export type Interceptor = <T extends HookType>(
-  hook: HookType,
+  hook: T,
   hookFunction: Hooks[T]
 ) => void;
+
+export type Interceptors = {
+  [x in HookType]: Hooks[x][];
+};
 
 export type PluginType = (interceptor: Interceptor) => void;
 

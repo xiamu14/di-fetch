@@ -12,12 +12,12 @@ export const fetchTransit = async <T>(options: {
   headers?: unknown;
   responseType?: string;
 }): Promise<T> => {
-  const { url: path, ...data } = options;
+  const { url: path, method, ...data } = options;
 
   const response = await fetch({
     path,
+    method: method.toUpperCase(),
     ...data,
-    debug: true,
   });
 
   return response as any;

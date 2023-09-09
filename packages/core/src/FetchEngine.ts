@@ -1,13 +1,10 @@
-import { Client, HeadersObject, Hooks, Interceptor, Use } from "./type";
+import { Client, HeadersObject, Interceptor, Interceptors, Use } from "./type";
 
 // 实现一个单例
 export default class FetchEngine {
   headers?: HeadersObject;
   baseUrl: string;
-  interceptors: {
-    willFetch: Hooks["willFetch"][];
-    didFetch: Hooks["didFetch"][];
-  } = { willFetch: [], didFetch: [] };
+  interceptors: Interceptors = { initFetch: [], willFetch: [], didFetch: [] };
   client: Client;
   static instance: FetchEngine;
   static getInstance() {
@@ -30,15 +27,7 @@ export default class FetchEngine {
     this.headers = { ...this.headers, ...headers };
   }
   interceptor: Interceptor = (hook, hookFunction) => {
-    switch (hook) {
-      case "willFetch":
-        this.interceptors["willFetch"].push(hookFunction as Hooks["willFetch"]);
-        break;
-
-      default:
-        this.interceptors["didFetch"].push(hookFunction as Hooks["didFetch"]);
-        break;
-    }
+    this.interceptors[hook].push(hookFunction);
   };
   use: Use = (plugin) => {
     plugin(this.interceptor);
