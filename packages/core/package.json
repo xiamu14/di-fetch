@@ -1,0 +1,24 @@
+{
+  "name": "di-fetch",
+  "version": "0.0.1-alpha.0",
+  "description": "",
+  "main": "./build/index.js",
+  "types": "./build",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "build": "rimraf build && tsc"
+  },
+  "keywords": [],
+  "author": "ben",
+  "license": "ISC",
+  "volta": {
+    "node": "18.17.1"
+  },
+  "devDependencies": {
+    "renew-it": "^1.5.2",
+    "rimraf": "^5.0.1",
+    "typescript": "^5.1.0"
+  }
+}

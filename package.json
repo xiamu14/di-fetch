@@ -1,0 +1,25 @@
+{
+  "name": "di-fetch",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "amend": "pnpm -r --filter=di-fetch run build && pnpm add di-fetch -r --filter demo",
+    "demo:dev": "pnpm -r --filter=demo run dev",
+    "demo:orval": "pnpm -r --filter=demo run orval",
+    "release": "cd packages/core && npx renew-it"
+  },
+  "keywords": [],
+  "author": "ben",
+  "license": "ISC",
+  "volta": {
+    "node": "18.17.1"
+  },
+  "dependencies": {
+    "immer": "^10.0.2"
+  },
+  "devDependencies": {
+    "eslint-config-alloy": "^5.1.2"
+  }
+}
