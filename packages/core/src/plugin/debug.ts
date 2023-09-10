@@ -1,9 +1,13 @@
 import { PartReqOptions, PluginType } from "../type";
 type Filters = PartReqOptions[];
-export const debugPlugin: (filters: Filters) => PluginType =
-  (filters: Filters) => (interceptor) => {
+export const debugPlugin: (filters: Filters, debug?: boolean) => PluginType =
+  (filters: Filters, debug?: boolean) => (interceptor) => {
     interceptor("initFetch", (partReqOptions) => {
-      console.log("initFetch", { filters, partReqOptions });
+      debug &&
+        console.log("[debugPlugin]", "color: green", {
+          filters,
+          partReqOptions,
+        });
 
       return {
         debug: filters.some(

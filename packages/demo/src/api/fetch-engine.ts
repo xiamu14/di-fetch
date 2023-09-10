@@ -1,17 +1,15 @@
 import Taro from "@tarojs/taro";
-import { FetchEngine, debugPlugin, Client } from "di-fetch";
+import { FetchEngine, debugPlugin, Client, HTTPErrorsPlugin } from "di-fetch";
 
 const client: Client = async (options) => {
   const response = await Taro.request(options as unknown as any);
-  return response.data;
+  return response as any;
 };
 
 export const fetchEngine = new FetchEngine({
   baseUrl: "https://petstore.swagger.io/v2",
-  headers: {
-    Authorization: "Bearer xx",
-  },
   client,
 });
 
-fetchEngine.use(debugPlugin([{ path: "/pet/1", method: "GET" }]));
+fetchEngine.use(debugPlugin([{ path: "/pet/findByStatus", method: "GET" }]));
+fetchEngine.use(HTTPErrorsPlugin);
