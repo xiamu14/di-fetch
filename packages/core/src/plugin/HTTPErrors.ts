@@ -106,7 +106,8 @@ export const HTTPErrorsPlugin: PluginType = (interceptor) => {
           response,
           error: new HTTPErrors(
             response.statusCode,
-            (response.data as { message: string; code: number }).message,
+            (response.data as { message?: string; code: number })?.message ??
+              "",
             response.data
           ),
         };
