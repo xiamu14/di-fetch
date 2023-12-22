@@ -26,6 +26,11 @@ export default class FetchEngine {
   setHeaders(headers: HeadersObject) {
     this.headers = { ...this.headers, ...headers };
   }
+  removeHeader(key: string) {
+    if (key in this.headers!) {
+      delete this.headers![key];
+    }
+  }
   interceptor: Interceptor = (hook, hookFunction) => {
     this.interceptors[hook].push(hookFunction);
   };
