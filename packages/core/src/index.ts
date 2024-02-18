@@ -8,11 +8,12 @@ export {
   isHTTPErrors,
   HTTPErrors,
 } from "./plugin/HTTPErrors";
+export { isBrowser, isNodeJs } from "./utils";
 
 export { type Client } from "./type";
 
-export async function fetch(options: any) {
+export async function fetchX<P>(data: any) {
   const fetchEntity = new FetchEntity();
-  const response = await fetchEntity.fetch(options);
+  const response = await fetchEntity.fetch<any, P>(data);
   return response;
 }

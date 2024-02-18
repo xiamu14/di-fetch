@@ -17,6 +17,7 @@
     "node": "18.17.1"
   },
   "devDependencies": {
+    "@types/node": "^20.10.8",
     "renew-it": "^1.5.2",
     "rimraf": "^5.0.1",
     "typescript": "^5.1.0"

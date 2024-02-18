@@ -1,8 +1,8 @@
 {
   "description": "",
   "scripts": {
-    "amend": "pnpm -r --filter=di-fetch run build && pnpm add di-fetch -r --filter demo",
-    "demo:dev": "pnpm -r --filter=demo run dev",
+    "amend": "pnpm -r --filter=di-fetch run build && pnpm add di-fetch -r --filter next-demo",
+    "next-demo:dev": "pnpm -r --filter=next-demo run dev",
     "demo:orval": "pnpm -r --filter=demo run orval",
     "release": "cd packages/core && npx renew-it"
   },
@@ -13,6 +13,7 @@
     "node": "18.17.1"
   },
   "dependencies": {
+    "cli-color": "^2.0.3",
     "immer": "^10.0.2"
   },
   "devDependencies": {

@@ -6,5 +6,7 @@ export const fetchEngine = new FetchEngine({
   client: Taro.request as Client,
 });
 
-fetchEngine.use(debugPlugin([{ path: "/pet/findByStatus", method: "GET" }]));
+fetchEngine.use(
+  debugPlugin([{ path: "/pet/findByStatus", method: "GET" }], true)
+);
 fetchEngine.use(HTTPErrorsPlugin);

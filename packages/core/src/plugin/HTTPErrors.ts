@@ -90,7 +90,8 @@ interface PlatResponse {
 }
 
 function isPlatResponse(response: unknown): response is PlatResponse {
-  return "statusCode" in (response as Record<string, any>);
+  // TODO: test
+  return typeof response === "object" &&  "statusCode" in (response as Record<string, any>);
 }
 
 export const HTTPErrorsPlugin: PluginType = (interceptor) => {

@@ -8,6 +8,11 @@ export default class FetchEngine {
   client: Client;
   static instance: FetchEngine;
   static getInstance() {
+    if (!FetchEngine.instance) {
+      throw new Error(
+        "Please initialize first. example: import './fetchEngine.ts' on root file."
+      );
+    }
     return FetchEngine.instance;
   }
   constructor(options: {
@@ -18,7 +23,7 @@ export default class FetchEngine {
     if (!FetchEngine.instance) {
       this.client = options.client;
       this.baseUrl = options.baseUrl;
-      this.headers = options.headers ?? {};
+      this.headers = options?.headers ?? {};
       FetchEngine.instance = this;
     }
     return FetchEngine.instance;
