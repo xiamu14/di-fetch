@@ -13,7 +13,6 @@
     "node": "18.17.1"
   },
   "dependencies": {
-    "cli-color": "^2.0.3",
     "immer": "^10.0.2"
   },
   "devDependencies": {

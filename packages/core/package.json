@@ -16,6 +16,9 @@
   "volta": {
     "node": "18.17.1"
   },
+  "dependencies": {
+    "cli-color": "^2.0.3"
+  },
   "devDependencies": {
     "@types/node": "^20.10.8",
     "renew-it": "^1.5.2",
