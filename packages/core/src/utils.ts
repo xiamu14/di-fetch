@@ -1,7 +1,7 @@
 export const isBrowser =
-  typeof window !== "undefined" && typeof window.document !== "undefined";
+  typeof window !== "undefined" && typeof window?.document !== "undefined";
 
 export const isNodeJs =
   typeof process !== "undefined" &&
   process.release !== null &&
-  process.release.name === "node";
+  process.release?.name === "node";
