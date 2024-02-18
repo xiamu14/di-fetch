@@ -25,7 +25,7 @@ export const mockPlugin: (rules: Rule[]) => PluginType =
           return {
             requestOptions,
             response: mockData.response as any,
-            shouldFetch: false,
+            skipFetch: true,
           };
         }
         return {

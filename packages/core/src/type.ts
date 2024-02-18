@@ -46,7 +46,7 @@ export type Hooks = {
   };
   willFetch: (requestOptions: ProcessedRequestOptions<unknown>) => {
     requestOptions: ProcessedRequestOptions<unknown>;
-    shouldFetch?: boolean;
+    skipFetch?: boolean;
     response?: unknown;
   };
   didFetch: (

@@ -51,7 +51,7 @@ export default class FetchEntity {
     for (const plugin of willFetch) {
       const result = plugin(requestOptions);
       requestOptions = result?.requestOptions as any;
-      if (!result?.shouldFetch) {
+      if (result?.skipFetch) {
         this.response = result?.response;
         next = false;
         break;
